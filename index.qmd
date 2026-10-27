@@ -1,12 +1,21 @@
 
 ---
-title: "Introduction"
 format: pdf
 ---
 
 # Preface {.unnumbered}
 
 This book has evolved from the lecture notes for *STAT 845: Statistical Methods for Research*, a graduate-level course taught at the University of Saskatchewan. It is born out of a recognition that for many graduate students, statistics is not merely a theoretical subject, but a vital tool required to unlock the meaning behind their research data.
+
+## Table of Contents {.unnumbered}
+
+1.  [Data Science with R and Quarto](unit1-introR/introR.qmd)
+2.  [Simple Linear Regression](unit2-slr/slr.qmd)
+3.  [Multiple Linear Regression](unit3-mlr/mlr.qmd)
+4.  [Residual Diagnostics for Regression Modelling](unit3-mlr/residuals.qmd)
+5.  [Logistic Regression](unit4-lr/logistic.qmd)
+6.  [One-factor Design and Analysis](unit5-factor/crbd.qmd)
+7.  [Factorial Design and Analysis](unit6-factorial/factorial.qmd)
 
 ## Audience and Prerequisites{.unnumbered}
 

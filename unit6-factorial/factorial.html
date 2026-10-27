@@ -2,14 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="">
 
-<title>8&nbsp; Factorial Design and Analysis – Statistical Inference and Learning Methods for Research</title>
+<title>7&nbsp; Factorial Design and Analysis – Data Analytics for Research</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -22,8 +25,9 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -34,7 +38,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -65,16 +69,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unit5-factor/crbd.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-0de45b8b5f35a93596f1d788d60c4c11.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-f79c7fb6db380d32be398468f2fb58cf.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9f849cbbbd34ccda4fce30280e8b4082.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a7b5894d5a4c39c6aa3484761f021c1f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/custombook-1.0.0/num_eq.js"></script>
+<script src="../site_libs/quarto-contrib/custombook-1.0.0/merge-toc.js"></script>
+<link href="../site_libs/quarto-contrib/custombook-1.0.0/bookstyles.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -119,7 +126,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -135,10 +142,9 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../resources/mystyles.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -147,7 +153,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unit6-factorial/factorial.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factorial Design and Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unit6-factorial/factorial.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factorial Design and Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -162,7 +168,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">Statistical Inference and Learning Methods for Research</a> 
+      <a href="../">Data Analytics for Research</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -175,63 +181,80 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unit1-introR/introR.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data Science with R and Quarto</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data Science with R and Quarto</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unit2-slr/slr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simple Linear Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Simple Linear Regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unit3-mlr/mlr.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Multiple Linear Regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unit3-mlr/residuals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Residual Diagnostics for Regression Modelling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Residual Diagnostics for Regression Modelling</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unit4-lr/logistic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unit5-factor/crbd.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-factor Design and Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">One-factor Design and Analysis</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../unit6-factorial/factorial.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factorial Design and Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factorial Design and Analysis</span></span></a>
   </div>
 </li>
     </ul>
     </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#battery-design-experiment" id="toc-battery-design-experiment" class="nav-link active" data-scroll-target="#battery-design-experiment"><span class="header-section-number">7.1</span> Battery Design Experiment</a></li>
+  <li><a href="#data-setup-and-preparation" id="toc-data-setup-and-preparation" class="nav-link" data-scroll-target="#data-setup-and-preparation"><span class="header-section-number">7.2</span> Data Setup and Preparation</a></li>
+  <li><a href="#exploratory-data-analysis-and-visualization" id="toc-exploratory-data-analysis-and-visualization" class="nav-link" data-scroll-target="#exploratory-data-analysis-and-visualization"><span class="header-section-number">7.3</span> Exploratory Data Analysis and Visualization</a></li>
+  <li><a href="#boxplots-of-main-effects" id="toc-boxplots-of-main-effects" class="nav-link" data-scroll-target="#boxplots-of-main-effects"><span class="header-section-number">7.4</span> Boxplots of Main Effects</a></li>
+  <li><a href="#interaction-plot" id="toc-interaction-plot" class="nav-link" data-scroll-target="#interaction-plot"><span class="header-section-number">7.5</span> Interaction Plot</a></li>
+  <li><a href="#model-fitting-and-analysis-of-variance-anova" id="toc-model-fitting-and-analysis-of-variance-anova" class="nav-link" data-scroll-target="#model-fitting-and-analysis-of-variance-anova"><span class="header-section-number">7.6</span> Model Fitting and Analysis of Variance (ANOVA)</a></li>
+  <li><a href="#model-adequacy-checks" id="toc-model-adequacy-checks" class="nav-link" data-scroll-target="#model-adequacy-checks"><span class="header-section-number">7.7</span> Model Adequacy Checks</a></li>
+  <li><a href="#post-hoc-analysis-pairwise-comparisons" id="toc-post-hoc-analysis-pairwise-comparisons" class="nav-link" data-scroll-target="#post-hoc-analysis-pairwise-comparisons"><span class="header-section-number">7.8</span> Post-Hoc Analysis: Pairwise Comparisons</a></li>
+  <li><a href="#tukeys-hsd-test" id="toc-tukeys-hsd-test" class="nav-link" data-scroll-target="#tukeys-hsd-test"><span class="header-section-number">7.9</span> Tukey’s HSD Test</a></li>
+  <li><a href="#fishers-lsd-method" id="toc-fishers-lsd-method" class="nav-link" data-scroll-target="#fishers-lsd-method"><span class="header-section-number">7.10</span> Fisher’s LSD Method</a></li>
+  </ul>
+</nav>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Factorial Design and Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Factorial Design and Analysis</span></h1>
 </div>
 
 
@@ -248,8 +271,8 @@ window.Quarto = {
 </header>
 
 
-<section id="battery-design-experiment" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="battery-design-experiment"><span class="header-section-number">8.1</span> Battery Design Experiment</h2>
+<section id="battery-design-experiment" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="battery-design-experiment"><span class="header-section-number">7.1</span> Battery Design Experiment</h2>
 <p>“This analysis explores data from a reliability engineering study designed to select the optimal power source for industrial sensors used in harsh environments (e.g., downhole drilling or autoclaves). The experiment investigates the Service Life (in hours) of the batteries based on two factors:</p>
 <p>Here is the modified and formatted text, ready for your R Markdown file:</p>
 <ul>
@@ -268,13 +291,13 @@ window.Quarto = {
 </ul>
 <p>The objective is to characterize the reliability of these power sources across the full thermal range. A critical specific aim is to investigate the presence of an interaction effect: to determine if the ‘High-Temp’ chemistry successfully maintains its voltage stability at 125°C, a point where standard consumer-grade batteries are expected to suffer catastrophic capacity loss.</p>
 </section>
-<section id="data-setup-and-preparation" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="data-setup-and-preparation"><span class="header-section-number">8.2</span> Data Setup and Preparation</h2>
+<section id="data-setup-and-preparation" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="data-setup-and-preparation"><span class="header-section-number">7.2</span> Data Setup and Preparation</h2>
 <p>First, we organize the raw data into a structured <code>data.frame</code>. This is a best practice in R that makes the data easier to manage and the code more readable. We create columns for the response variable <code>life</code> and the two factors, <code>material</code> and <code>temperature</code>, ensuring they are treated as categorical variables (factors) for the analysis.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Response variable: battery life</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Response variable: battery life</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>life <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">130</span>,<span class="dv">155</span>,<span class="dv">74</span>,<span class="dv">180</span>,  <span class="dv">34</span>,<span class="dv">40</span>,<span class="dv">80</span>,<span class="dv">75</span>,   <span class="dv">20</span>,<span class="dv">70</span>,<span class="dv">82</span>,<span class="dv">58</span>,</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>          <span class="dv">150</span>,<span class="dv">188</span>,<span class="dv">159</span>,<span class="dv">126</span>, <span class="dv">136</span>,<span class="dv">122</span>,<span class="dv">106</span>,<span class="dv">115</span>, <span class="dv">25</span>,<span class="dv">70</span>,<span class="dv">58</span>,<span class="dv">45</span>,</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>          <span class="dv">138</span>,<span class="dv">110</span>,<span class="dv">168</span>,<span class="dv">160</span>, <span class="dv">174</span>,<span class="dv">120</span>,<span class="dv">150</span>,<span class="dv">139</span>, <span class="dv">96</span>,<span class="dv">104</span>,<span class="dv">82</span>,<span class="dv">60</span>)</span>
@@ -287,7 +310,7 @@ window.Quarto = {
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="do">## Preview the data</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>battery_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>battery_df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div data-pagedtable="false">
@@ -298,16 +321,16 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="exploratory-data-analysis-and-visualization" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="exploratory-data-analysis-and-visualization"><span class="header-section-number">8.3</span> Exploratory Data Analysis and Visualization</h2>
+<section id="exploratory-data-analysis-and-visualization" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="exploratory-data-analysis-and-visualization"><span class="header-section-number">7.3</span> Exploratory Data Analysis and Visualization</h2>
 <p>Before fitting a formal model, we visualize the data to get an intuition for the relationships between the factors and the response.</p>
 </section>
-<section id="boxplots-of-main-effects" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="boxplots-of-main-effects"><span class="header-section-number">8.4</span> Boxplots of Main Effects</h2>
+<section id="boxplots-of-main-effects" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="boxplots-of-main-effects"><span class="header-section-number">7.4</span> Boxplots of Main Effects</h2>
 <p>Boxplots are excellent for examining the distribution of battery life for each level of our factors independently. This gives us a preliminary look at the <strong>main effects</strong>—the individual impact of material type and temperature.</p>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Boxplot for Material Type</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(battery_df, <span class="fu">aes</span>(<span class="at">x =</span> material, <span class="at">y =</span> life, <span class="at">fill =</span> material)) <span class="sc">+</span></span>
@@ -320,7 +343,7 @@ window.Quarto = {
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Battery Life by Temperature"</span>, <span class="at">x =</span> <span class="st">"Temperature (°C)"</span>, <span class="at">y =</span> <span class="st">"Life (hours)"</span>) <span class="sc">+</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
@@ -343,13 +366,13 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="interaction-plot" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="interaction-plot"><span class="header-section-number">8.5</span> Interaction Plot</h2>
+<section id="interaction-plot" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="interaction-plot"><span class="header-section-number">7.5</span> Interaction Plot</h2>
 <p>The most crucial plot for a factorial experiment is the <strong>interaction plot</strong>. It displays the mean battery life for each combination of material and temperature. If the lines are parallel, it suggests there is no interaction. If the lines are not parallel (i.e., they cross or diverge), it indicates that the effect of temperature on battery life is different for each material type, signaling a likely interaction.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(battery_df, <span class="fu">aes</span>(<span class="at">x =</span> temperature, <span class="at">y =</span> life, <span class="at">group =</span> material, <span class="at">color =</span> material)) <span class="sc">+</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(battery_df, <span class="fu">aes</span>(<span class="at">x =</span> temperature, <span class="at">y =</span> life, <span class="at">group =</span> material, <span class="at">color =</span> material)) <span class="sc">+</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"line"</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">"point"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
@@ -359,7 +382,7 @@ window.Quarto = {
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Material Type"</span></span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -387,18 +410,18 @@ window.Quarto = {
 </ul>
 <p><strong>Summary:</strong> There is no single “best” material overall. The optimal choice depends entirely on the environment: <strong>Material 2</strong> for cold applications and <strong>Material 3</strong> for any environment exceeding room temperature.</p>
 </section>
-<section id="model-fitting-and-analysis-of-variance-anova" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="model-fitting-and-analysis-of-variance-anova"><span class="header-section-number">8.6</span> Model Fitting and Analysis of Variance (ANOVA)</h2>
+<section id="model-fitting-and-analysis-of-variance-anova" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="model-fitting-and-analysis-of-variance-anova"><span class="header-section-number">7.6</span> Model Fitting and Analysis of Variance (ANOVA)</h2>
 <p>We now fit a linear model to formally test the significance of the main effects and the interaction term. The model <code>life ~ material * temperature</code> is shorthand for <code>life ~ material + temperature + material:temperature</code>. We use a sum-to-zero contrast (<code>contr.sum</code>) for balanced interpretation of the effects. The <strong>ANOVA table</strong> will tell us if the variation caused by our factors is statistically significant compared to the random variation in the data.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fit the full factorial model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fit the full factorial model</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>battery_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(life <span class="sc">~</span> material <span class="sc">*</span> temperature, </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> battery_df,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">contrasts =</span> <span class="fu">list</span>(<span class="at">material =</span> contr.sum, <span class="at">temperature =</span> contr.sum))</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(battery_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(battery_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -433,8 +456,8 @@ F-statistic:    11 on 8 and 27 DF,  p-value: 9.426e-07</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate the ANOVA table</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">anova</span>(battery_fit), <span class="at">digits=</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Generate the ANOVA table</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">anova</span>(battery_fit), <span class="at">digits=</span><span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
@@ -487,12 +510,12 @@ F-statistic:    11 on 8 and 27 DF,  p-value: 9.426e-07</code></pre>
 </div>
 <p>The ANOVA table shows very small p-values (<code>Pr(&gt;F)</code>) for <code>material</code>, <code>temperature</code>, and, most importantly, the <code>material:temperature</code> interaction. This confirms our visual inspection: all effects are statistically significant. <strong>Because the interaction is significant, our interpretation should focus on the interaction itself rather than the main effects in isolation.</strong></p>
 </section>
-<section id="model-adequacy-checks" class="level2" data-number="8.7">
-<h2 data-number="8.7" class="anchored" data-anchor-id="model-adequacy-checks"><span class="header-section-number">8.7</span> Model Adequacy Checks</h2>
+<section id="model-adequacy-checks" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="model-adequacy-checks"><span class="header-section-number">7.7</span> Model Adequacy Checks</h2>
 <p>The validity of our ANOVA results depends on the model’s residuals meeting certain assumptions (normality, constant variance, independence). We check these with diagnostic plots.</p>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Extract standardized residuals and fitted values</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Extract standardized residuals and fitted values</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>battery_fit_diag <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">residuals =</span> <span class="fu">rstandard</span>(battery_fit),</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">fitted =</span> <span class="fu">fitted.values</span>(battery_fit)</span>
@@ -513,7 +536,7 @@ F-statistic:    11 on 8 and 27 DF,  p-value: 9.426e-07</code></pre>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>p1 </span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>p2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
@@ -537,21 +560,21 @@ F-statistic:    11 on 8 and 27 DF,  p-value: 9.426e-07</code></pre>
 </div>
 <p>The Normal Q-Q plot shows the points falling roughly along the line, suggesting the normality assumption is met. The Residuals vs.&nbsp;Fitted plot shows a random scatter of points around the zero line, indicating that the variance is reasonably constant. The model assumptions appear to be satisfied.</p>
 </section>
-<section id="post-hoc-analysis-pairwise-comparisons" class="level2" data-number="8.8">
-<h2 data-number="8.8" class="anchored" data-anchor-id="post-hoc-analysis-pairwise-comparisons"><span class="header-section-number">8.8</span> Post-Hoc Analysis: Pairwise Comparisons</h2>
+<section id="post-hoc-analysis-pairwise-comparisons" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="post-hoc-analysis-pairwise-comparisons"><span class="header-section-number">7.8</span> Post-Hoc Analysis: Pairwise Comparisons</h2>
 <p>Since the interaction is significant, we must compare the means of the nine specific treatment combinations (3 materials × 3 temperatures). Simply comparing the average effect of Material 1 vs.&nbsp;Material 2 would be misleading, as that difference depends on the temperature.</p>
 </section>
-<section id="tukeys-hsd-test" class="level2" data-number="8.9">
-<h2 data-number="8.9" class="anchored" data-anchor-id="tukeys-hsd-test"><span class="header-section-number">8.9</span> Tukey’s HSD Test</h2>
+<section id="tukeys-hsd-test" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="tukeys-hsd-test"><span class="header-section-number">7.9</span> Tukey’s HSD Test</h2>
 <p><strong>Tukey’s Honest Significant Difference (HSD)</strong> test is a post-hoc test that compares all possible pairs of means while controlling the family-wise error rate. We apply it to an <code>aov</code> model object. The output for the <code>material:temperature</code> interaction shows which specific combinations are significantly different from one another.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fit the model using aov() for Tukey's test</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Fit the model using aov() for Tukey's test</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>battery_aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(life <span class="sc">~</span> material <span class="sc">*</span> temperature, <span class="at">data =</span> battery_df)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Perform Tukey's HSD test</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(battery_aov)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(battery_aov)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Tukey multiple comparisons of means
@@ -612,20 +635,20 @@ $`material:temperature`
 </div>
 </div>
 </section>
-<section id="fishers-lsd-method" class="level2" data-number="8.10">
-<h2 data-number="8.10" class="anchored" data-anchor-id="fishers-lsd-method"><span class="header-section-number">8.10</span> Fisher’s LSD Method</h2>
+<section id="fishers-lsd-method" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="fishers-lsd-method"><span class="header-section-number">7.10</span> Fisher’s LSD Method</h2>
 <p>The <strong>Fisher’s Least Significant Difference (LSD)</strong> method is another option for pairwise comparisons. To test the interaction means, we must specify both factors in the <code>trt</code> argument.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Perform LSD test on the interaction term</span></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>lsd_results <span class="ot">&lt;-</span> <span class="fu">LSD.test</span>(battery_aov, <span class="at">trt =</span> <span class="fu">c</span>(<span class="st">"material"</span>, <span class="st">"temperature"</span>),</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">p.adj =</span> <span class="st">"none"</span>, <span class="at">group =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Print the comparison table</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lsd_results<span class="sc">$</span>comparison)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(lsd_results<span class="sc">$</span>comparison)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>              difference pvalue signif.         LCL        UCL
@@ -668,1138 +691,249 @@ $`material:temperature`
 </div>
 </div>
 <p>The results from both Tukey’s HSD and Fisher’s LSD provide detailed p-values for comparing pairs of treatment combinations, allowing us to make specific conclusions, such as “at 125°C, Material 3 has a significantly longer life than Materials 1 and 2.”</p>
-</section>
-<section id="analysis-of-entropy" class="level2" data-number="8.11">
-<h2 data-number="8.11" class="anchored" data-anchor-id="analysis-of-entropy"><span class="header-section-number">8.11</span> Analysis of Entropy</h2>
-<p><strong>ANOEN Table</strong></p>
-<div class="cell tbl-cap-location-top">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb12" data-cap-location="top"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ANOEN)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">anoen</span>(battery_fit), <span class="at">format =</span> <span class="st">"gt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div id="idqhjdosua" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#idqhjdosua table {
-  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-#idqhjdosua thead, #idqhjdosua tbody, #idqhjdosua tfoot, #idqhjdosua tr, #idqhjdosua td, #idqhjdosua th {
-  border-style: none;
-}
-
-#idqhjdosua p {
-  margin: 0;
-  padding: 0;
-}
-
-#idqhjdosua .gt_table {
-  display: table;
-  border-collapse: collapse;
-  line-height: normal;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #A8A8A8;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #A8A8A8;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_caption {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-#idqhjdosua .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#idqhjdosua .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 3px;
-  padding-bottom: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#idqhjdosua .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#idqhjdosua .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#idqhjdosua .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#idqhjdosua .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#idqhjdosua .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#idqhjdosua .gt_spanner_row {
-  border-bottom-style: hidden;
-}
-
-#idqhjdosua .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  text-align: left;
-}
-
-#idqhjdosua .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#idqhjdosua .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#idqhjdosua .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#idqhjdosua .gt_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#idqhjdosua .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#idqhjdosua .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#idqhjdosua .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#idqhjdosua .gt_row_group_first th {
-  border-top-width: 2px;
-}
-
-#idqhjdosua .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#idqhjdosua .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#idqhjdosua .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#idqhjdosua .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_last_grand_summary_row_top {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: double;
-  border-bottom-width: 6px;
-  border-bottom-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#idqhjdosua .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#idqhjdosua .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#idqhjdosua .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#idqhjdosua .gt_left {
-  text-align: left;
-}
-
-#idqhjdosua .gt_center {
-  text-align: center;
-}
-
-#idqhjdosua .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#idqhjdosua .gt_font_normal {
-  font-weight: normal;
-}
-
-#idqhjdosua .gt_font_bold {
-  font-weight: bold;
-}
-
-#idqhjdosua .gt_font_italic {
-  font-style: italic;
-}
-
-#idqhjdosua .gt_super {
-  font-size: 65%;
-}
-
-#idqhjdosua .gt_footnote_marks {
-  font-size: 75%;
-  vertical-align: 0.4em;
-  position: initial;
-}
-
-#idqhjdosua .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#idqhjdosua .gt_indent_1 {
-  text-indent: 5px;
-}
-
-#idqhjdosua .gt_indent_2 {
-  text-indent: 10px;
-}
-
-#idqhjdosua .gt_indent_3 {
-  text-indent: 15px;
-}
-
-#idqhjdosua .gt_indent_4 {
-  text-indent: 20px;
-}
-
-#idqhjdosua .gt_indent_5 {
-  text-indent: 25px;
-}
-
-#idqhjdosua .katex-display {
-  display: inline-flex !important;
-  margin-bottom: 0.75em !important;
-}
-
-#idqhjdosua div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
-  height: 0px !important;
-}
-</style>
-
-<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<caption>ANOEN Table of Linear Model for Battery Data</caption>
-<colgroup>
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-<col style="width: 9%">
-</colgroup>
-<thead>
-<tr class="gt_heading header">
-<th colspan="11" class="gt_heading gt_title gt_font_normal"><strong>Analysis of Entropy (ANOEN)</strong></th>
-</tr>
-<tr class="gt_heading even">
-<th colspan="11" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Model Family: gaussian</th>
-</tr>
-<tr class="gt_col_headings gt_spanner_row header">
-<th rowspan="2" id="Term" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Term</th>
-<th colspan="3" id="Model Complexity" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
-Model Complexity
-</div></th>
-<th colspan="2" id="Entropy Info" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
-Entropy Info
-</div></th>
-<th colspan="3" id="Entropy-based $R^2$" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
-Entropy-based <span class="math inline">\(R^2\)</span>
-</div></th>
-<th colspan="2" id="Significance" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
-Significance
-</div></th>
-</tr>
-<tr class="gt_col_headings even">
-<th id="p" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><span class="math inline">\(p\)</span></th>
-<th id="Delta_par" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><span class="math inline">\(\Delta p\)</span></th>
-<th id="df_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><span class="math inline">\(\text{df}_c\)</span></th>
-<th id="d_adj" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><span class="math inline">\(d_{\text{adj}}\)</span></th>
-<th id="I_H" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><span class="math inline">\(\hat I_H\)</span></th>
-<th id="partialR2H" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Partial</th>
-<th id="compR2H" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Comp.</th>
-<th id="R2H" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Cum.</th>
-<th id="chi_pvalue" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><span class="math inline">\(\chi^2\)</span></th>
-<th id="f_pvalue" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col"><span class="math inline">\(F_{Seq}\)</span></th>
-</tr>
-</thead>
-<tbody class="gt_table_body">
-<tr class="odd">
-<td class="gt_row gt_left" headers="Term">material</td>
-<td class="gt_row gt_right" headers="p">3.0000</td>
-<td class="gt_row gt_right" headers="Delta_par">2.0000</td>
-<td class="gt_row gt_right" headers="df_c">2.1183</td>
-<td class="gt_row gt_right" headers="d_adj">10.4533</td>
-<td class="gt_row gt_right" headers="I_H">0.0892</td>
-<td class="gt_row gt_right" headers="partialR2H">0.0853</td>
-<td class="gt_row gt_right" headers="compR2H">0.0853</td>
-<td class="gt_row gt_right" headers="R2H">0.0853</td>
-<td class="gt_row gt_right" headers="chi_pvalue">0.0775</td>
-<td class="gt_row gt_right" headers="f_pvalue">0.0869</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Term">temperature</td>
-<td class="gt_row gt_right" headers="p">5.0000</td>
-<td class="gt_row gt_right" headers="Delta_par">2.0000</td>
-<td class="gt_row gt_right" headers="df_c">2.2507</td>
-<td class="gt_row gt_right" headers="d_adj">9.6383</td>
-<td class="gt_row gt_right" headers="I_H">0.8150</td>
-<td class="gt_row gt_right" headers="partialR2H">0.5574</td>
-<td class="gt_row gt_right" headers="compR2H">0.5098</td>
-<td class="gt_row gt_right" headers="R2H">0.5951</td>
-<td class="gt_row gt_right" headers="chi_pvalue">0.0000</td>
-<td class="gt_row gt_right" headers="f_pvalue">0.0000</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="Term">material:temperature</td>
-<td class="gt_row gt_right" headers="p">9.0000</td>
-<td class="gt_row gt_right" headers="Delta_par">4.0000</td>
-<td class="gt_row gt_right" headers="df_c">4.9734</td>
-<td class="gt_row gt_right" headers="d_adj">9.3529</td>
-<td class="gt_row gt_right" headers="I_H">0.2854</td>
-<td class="gt_row gt_right" headers="partialR2H">0.2483</td>
-<td class="gt_row gt_right" headers="compR2H">0.1005</td>
-<td class="gt_row gt_right" headers="R2H">0.6956</td>
-<td class="gt_row gt_right" headers="chi_pvalue">0.0092</td>
-<td class="gt_row gt_right" headers="f_pvalue">0.0186</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="Term">Model</td>
-<td class="gt_row gt_right" headers="p">9.0000</td>
-<td class="gt_row gt_right" headers="Delta_par">8.0000</td>
-<td class="gt_row gt_right" headers="df_c">9.3424</td>
-<td class="gt_row gt_right" headers="d_adj">9.3529</td>
-<td class="gt_row gt_right" headers="I_H">1.1896</td>
-<td class="gt_row gt_right" headers="partialR2H">0.6956</td>
-<td class="gt_row gt_right" headers="compR2H">0.6956</td>
-<td class="gt_row gt_right" headers="R2H">0.6956</td>
-<td class="gt_row gt_right" headers="chi_pvalue">0.0000</td>
-<td class="gt_row gt_right" headers="f_pvalue">0.0000</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p><strong>ANOEN Pie Chart</strong></p>
-<p><a href="#fig-battery-r2" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> shows the component <span class="math inline">\(R^2_\text{adj}\)</span>. This pie chart shows us the percentage of contributions of each term in the total variance of battery life.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">graph.compR2</span>(<span class="fu">anoen</span>(battery_fit))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
-<div id="fig-battery-r2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-battery-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="factorial_files/figure-html/fig-battery-r2-1.png" class="img-fluid figure-img" width="864">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-battery-r2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8.1: Component <span class="math inline">\(R^2_\text{adj}\)</span> of Linear Model for Battery Data
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
 
 
 </section>
 
 </main> <!-- /main -->
-<script>
-/* loadtoc.js — overlay TOC drawer (no layout shift, up to h3)
-   - Creates a fixed-position overlay panel + backdrop
-   - Clones existing Quarto TOC if found; else builds from <main> h2/h3
-   - Collapses h3 under h2 initially; click to toggle
-   - Closes on link click, backdrop click, or ESC
-   - Prevents body scroll when open; does NOT push page content
-*/
-
-(() => {
-  // ===== Config =====
-  const CFG = {
-    side: 'right',            // 'right' | 'left'
-    fontSize: '14px',
-    width: 400,               // px
-    maxWidthVw: 92,           // %
-    headerOffset: 80,         // px: scroll margin for headings
-    zBase: 2000,              // base z-index for overlay/backdrop
-    buildFromHeadingsIfMissingSidebar: true, // fallback builder
-    headingSelector: 'main :is(h2,h3)',      // used if building fallback
-    maxDepth: 3,              // up to h3
-    toggleHotkey: 'KeyT',     // Cmd/Ctrl+Shift+T toggles
-  };
-
-  // ===== Utilities =====
-  const $ = (sel, el=document) => el.querySelector(sel);
-  const $$ = (sel, el=document) => [...el.querySelectorAll(sel)];
-  const on = (el, ev, fn, opts) => el && el.addEventListener(ev, fn, opts);
-
-  const slugify = (txt) =>
-    txt.toLowerCase()
-       .trim()
-       .replace(/[\s\.\,\/:\;\?\!\(\)\[\]\{\}"'`]+/g, '-')
-       .replace(/-+/g, '-')
-       .replace(/^-|-$/g, '');
-
-  function ensureId(el) {
-    if (!el.id) el.id = slugify(el.textContent || 'section');
-    return el.id;
-  }
-
-  function injectStyles() {
-    const style = document.createElement('style');
-    style.setAttribute('data-toc-style', 'overlay');
-    style.textContent = `
-      :root { 
-        --toc-width:${CFG.width}px; 
-        --toc-offset:${CFG.headerOffset}px; 
-        --toc-z:${CFG.zBase}; 
-        --toc-font-size:${CFG.fontSize};
-      }
-      main :is(h1,h2,h3,h4,h5,h6){ scroll-margin-top: var(--toc-offset); }
-
-      #toc-toggle-btn {
-        position: fixed; top: 50px; ${CFG.side}: 10px;
-        z-index: calc(var(--toc-z) + 2);
-        padding: 0.1rem 0.6rem; border: 1px solid #ddd; border-radius: 999px;
-        background: #fff; cursor: pointer; box-shadow: 0 8px 24px rgba(0,0,0,.10);
-        font: 1000 32px system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      }
-
-      #toc-backdrop {
-        position: fixed; inset: 0; background: rgba(0,0,0,.25);
-        opacity: 0; pointer-events: none; transition: opacity .2s ease;
-        z-index: var(--toc-z);
-      }
-      body.toc-open #toc-backdrop { opacity: 1; pointer-events: auto; }
-
-      #toc-panel {
-        position: fixed; top: 0; ${CFG.side}: 0; height: 100vh;
-        width: var(--toc-width); max-width: ${CFG.maxWidthVw}vw;
-        background: #fff; box-shadow: ${CFG.side==='right' ? '-16px' : '16px'} 0 32px rgba(0,0,0,.08);
-        transform: translateX(${CFG.side==='right' ? '100%' : '-100%'});
-        transition: transform .22s ease;
-        z-index: calc(var(--toc-z) + 1);
-        display: flex; flex-direction: column;
-      }
-      body.toc-open #toc-panel { transform: translateX(0); }
-      body.toc-open { overflow: hidden; }
-
-      #toc-head {
-        display:flex; align-items:center; justify-content:space-between;
-        gap:0.5rem; padding:.75rem .9rem; border-bottom:1px solid #eee;
-      }
-      #toc-head h3{ margin:0; font:600 16px system-ui,-apple-system,Segoe UI,Roboto,sans-serif; }
-
-      #toc-content { 
-        overflow:auto; 
-        padding:.6rem .85rem 1rem; 
-        font-size: var(--toc-font-size);  
-      }
-      #toc-content nav, #toc-content .book-toc { line-height:1.5; }
-      #toc-content ul { list-style:none; margin:.25rem 0; padding-left:1rem; }
-      #toc-content li { margin:.1rem 0; }
-      #toc-content a { text-decoration:none; }
-      #toc-content .lvl-1 > a { font-weight:600; }
-      #toc-content .lvl-2 > a { font-weight:500; }
-      #toc-content .lvl-3 > a { font-weight:400; }
-
-      .toc-icon-btn{
-        border:1px solid #ddd; border-radius:8px; padding:.35rem .55rem; background:#fff; cursor:pointer;
-      }
-
-      /* collapsible h3 under h2 */
-      .toc-caret { margin-right:.35rem; user-select:none; cursor:pointer; }
-      .toc-collapsed > ul { display:none; }
-      .toc-caret::before { content: '▾'; display:inline-block; transform: rotate(0deg); transition: transform .12s linear; }
-      .toc-collapsed > .toc-row .toc-caret::before { transform: rotate(-90deg); }
-      .toc-row { display:flex; align-items:center; gap:.25rem; }
-    `;
-    document.head.appendChild(style);
-  }
-
-  // Create skeleton (toggle button, backdrop, panel)
-  function createShell() {
-    // Toggle button (if user already has one with #toc-toggle-btn, reuse)
-    let toggle = document.getElementById('toc-toggle-btn');
-    if (!toggle) {
-      toggle = document.createElement('button');
-      toggle.id = 'toc-toggle-btn';
-      toggle.type = 'button';
-      toggle.setAttribute('aria-expanded','false');
-      toggle.setAttribute('aria-controls','toc-panel');
-      toggle.title = 'Open Table of Contents';
-      toggle.textContent = '☰';
-      document.body.appendChild(toggle);
-    }
-
-    // Backdrop
-    let backdrop = document.getElementById('toc-backdrop');
-    if (!backdrop) {
-      backdrop = document.createElement('div');
-      backdrop.id = 'toc-backdrop';
-      backdrop.setAttribute('aria-hidden','true');
-      document.body.appendChild(backdrop);
-    }
-
-    // Panel
-    let panel = document.getElementById('toc-panel');
-    if (!panel) {
-      panel = document.createElement('aside');
-      panel.id = 'toc-panel';
-      panel.setAttribute('role','dialog');
-      panel.setAttribute('aria-modal','true');
-      panel.setAttribute('aria-label','Table of Contents');
-
-      const head = document.createElement('div');
-      head.id = 'toc-head';
-      const h = document.createElement('h3'); h.textContent = 'Table of Contents';
-      const close = document.createElement('button'); close.className='toc-icon-btn'; close.id='toc-close'; close.textContent='✕'; close.title='Close TOC';
-      head.append(h, close);
-
-      const content = document.createElement('div');
-      content.id = 'toc-content';
-      content.innerHTML = '<p><em>Loading…</em></p>';
-
-      panel.append(head, content);
-      document.body.appendChild(panel);
-    }
-
-    return { toggle, backdrop, panel };
-  }
-
-  function openTOC(toggleBtn) {
-    document.body.classList.add('toc-open');
-    toggleBtn?.setAttribute('aria-expanded','true');
-  }
-  function closeTOC(toggleBtn) {
-    document.body.classList.remove('toc-open');
-    toggleBtn?.setAttribute('aria-expanded','false');
-  }
-
-  // Build TOC DOM: either clone Quarto sidebar TOC or build from headings
-  function findExistingTOC() {
-    // Try common Quarto TOC containers
-    return (
-      $('nav[role="navigation"].toc-active') ||
-      $('#TOC') ||
-      $('nav.sidebar-navigation .toc-active') ||
-      null
-    );
-  }
-
-  function buildFromHeadings() {
-    const container = document.createElement('div');
-    container.className = 'book-toc';
-    const ul1 = document.createElement('ul');
-
-    const heads = $$(CFG.headingSelector).filter(h => {
-      const level = Number(h.tagName.slice(1));
-      return level >= 2 && level <= CFG.maxDepth;
-    });
-
-    let currentH2LI = null;
-    heads.forEach(h => {
-      const level = Number(h.tagName.slice(1));
-      const id = '#' + ensureId(h);
-      const a = document.createElement('a');
-      a.href = id;
-      a.textContent = h.textContent.trim() || (level === 2 ? 'Section' : 'Subsection');
-
-      if (level === 2) {
-        const li = document.createElement('li'); li.className = 'lvl-2';
-        const row = document.createElement('div'); row.className = 'toc-row';
-        const caret = document.createElement('span'); caret.className = 'toc-caret'; caret.title = 'Toggle subsections';
-        row.append(caret, a);
-        li.appendChild(row);
-
-        const ul2 = document.createElement('ul'); // for h3 children
-        li.appendChild(ul2);
-        li.classList.add('toc-collapsed'); // start collapsed
-        ul1.appendChild(li);
-        currentH2LI = li;
-
-        on(caret, 'click', () => li.classList.toggle('toc-collapsed'));
-      } else if (level === 3) {
-        if (!currentH2LI) {
-          // Create a dummy h2 wrapper if needed
-          const dummy = document.createElement('li'); dummy.className = 'lvl-2 toc-collapsed';
-          const row = document.createElement('div'); row.className = 'toc-row';
-          const caret = document.createElement('span'); caret.className = 'toc-caret'; caret.title = 'Toggle subsections';
-          const label = document.createElement('a'); label.href = '#'; label.textContent = '(Untitled section)';
-          row.append(caret, label);
-          dummy.appendChild(row);
-          const ul2 = document.createElement('ul'); dummy.appendChild(ul2);
-          ul1.appendChild(dummy);
-          currentH2LI = dummy;
-          on(caret, 'click', () => dummy.classList.toggle('toc-collapsed'));
-        }
-        const ul2 = currentH2LI.querySelector('ul') || (() => { const u=document.createElement('ul'); currentH2LI.appendChild(u); return u; })();
-        const li3 = document.createElement('li'); li3.className = 'lvl-3';
-        li3.appendChild(a);
-        ul2.appendChild(li3);
-      }
-    });
-
-    // Wrap under a fake lvl-1 “This page”
-    const li1 = document.createElement('li'); li1.className = 'lvl-1';
-    const aTop = document.createElement('a'); aTop.href = '#'; aTop.textContent = document.title || 'This page';
-    li1.appendChild(aTop);
-    li1.appendChild(ul1);
-
-    const rootUL = document.createElement('ul'); rootUL.appendChild(li1);
-    container.appendChild(rootUL);
-    return container;
-  }
-
-  function prepareLinksCloseOnClick(scopeEl, toggleBtn) {
-    $$('#toc-content a', scopeEl).forEach(a => {
-      on(a, 'click', () => {
-        // let the browser jump first, then close to avoid covering target
-        setTimeout(() => closeTOC(toggleBtn), 0);
-      });
-    });
-  }
-
-  // ===== Init =====
-  function init() {
-    injectStyles();
-    const { toggle, backdrop, panel } = createShell();
-
-    const closeBtn = $('#toc-close', panel);
-    const content = $('#toc-content', panel);
-
-    // Open/close wiring
-    on(toggle, 'click', () => openTOC(toggle));
-    on(closeBtn, 'click', () => closeTOC(toggle));
-    on(backdrop, 'click', () => closeTOC(toggle));
-    on(document, 'keydown', (e) => {
-      if (e.key === 'Escape') closeTOC(toggle);
-      // Cmd/Ctrl+Shift+T hotkey
-      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.code === CFG.toggleHotkey) {
-        e.preventDefault();
-        document.body.classList.contains('toc-open') ? closeTOC(toggle) : openTOC(toggle);
-      }
-    });
-
-    // Fill content
-    const existing = findExistingTOC();
-    if (existing) {
-      const cloned = existing.cloneNode(true);
-      // If the cloned nav already has nested lists, just drop it in
-      content.innerHTML = '';
-      content.appendChild(cloned);
-      // Optional: start with h3 collapsed if structure resembles h2>ul>li>ul
-      // (Skip auto-collapse for cloned Quarto TOC to avoid fighting its JS)
-      prepareLinksCloseOnClick(panel, toggle);
-    } else if (CFG.buildFromHeadingsIfMissingSidebar) {
-      const built = buildFromHeadings();
-      content.innerHTML = '';
-      content.appendChild(built);
-      prepareLinksCloseOnClick(panel, toggle);
-    } else {
-      content.innerHTML = '<p><em>No TOC found on this page.</em></p>';
-    }
-  }
-
-  // Run after DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-
-</script>
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1807,194 +941,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
-      <a href="../unit5-factor/crbd.html" class="pagination-link" aria-label="One-factor Design and Analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">One-factor Design and Analysis</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-  </div>
-</nav>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 
 

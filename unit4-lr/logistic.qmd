@@ -1152,18 +1152,3 @@ legend("bottomleft",
        bty = "n") # bty="n" removes the box
 ```
 
-## Analysis of Entropy
-
-
-
-
-```{r}
-#|label: anoen-chd
-#|cache: false
-
-library(ANOEN)
-anoen_chd <- anoen(fit1_chd)
-print(anoen_chd, format="gt")
-graph.compR2(anoen_chd)
-```
-

@@ -221,37 +221,3 @@ print(lsd_results$comparison)
 
 The results from both Tukey's HSD and Fisher's LSD provide detailed p-values for comparing pairs of treatment combinations, allowing us to make specific conclusions, such as "at 125°C, Material 3 has a significantly longer life than Materials 1 and 2."
 
-## Analysis of Entropy
-
-```{r, include=FALSE, echo=TRUE, eval=FALSE}
-
-# Replace the placeholder path with the path to your ANOEN source directory
-
-remove.packages("ANOEN")
-suppressWarnings(unloadNamespace("ANOEN"))
-
-if(!requireNamespace("ANOEN"))
-  devtools::install("~/GitHub/ANOEN",
-                    upgrade = "never",
-                    build = FALSE,
-                    args = c("--no-byte-compile", "--no-test-load")
-  )
-
-
-```
-
-**ANOEN Table**
-```{r batter-anoen-table}
-#| tbl-cap-location: top
-#| tbl-cap: "ANOEN Table of Linear Model for Battery Data"
-library(ANOEN)
-print(anoen(battery_fit), format = "gt")
-```
-**ANOEN Pie Chart**
-
-@{fig-battery-r2} shows the component $R^2_\text{adj}$. This pie chart shows us the percentage of contributions of each term in the total variance of battery life. 
- 
-```{r fig-battery-r2}
-#| fig-cap: "Component $R^2_\\text{adj}$ of Linear Model for Battery Data"
-graph.compR2(anoen(battery_fit))
-```
