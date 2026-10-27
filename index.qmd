@@ -9,7 +9,7 @@ This book has evolved from the lecture notes for *STAT 845: Statistical Methods 
 
 ## Table of Contents {.unnumbered}
 
-1.  [Data Science with R and Quarto](unit1-introR/introR.qmd)
+1.  [Data Analysis with R](unit1-introR/introR.qmd)
 2.  [Simple Linear Regression](unit2-slr/slr.qmd)
 3.  [Multiple Linear Regression](unit3-mlr/mlr.qmd)
 4.  [Residual Diagnostics for Regression Modelling](unit3-mlr/residuals.qmd)
