@@ -14,9 +14,15 @@ format:
   custombook-html: default
   custombook-pdf: default
 from: markdown+tex_math_single_backslash+tex_math_dollars
+author:
+  - name: "Longhai Li"
+    affiliation: "University of Saskatchewan"
+    url: "https://longhaisk.github.io/"
+date: last-modified
 
 
 book:
+  repo-url: "https://github.com/longhaiSK/statmethods"
   title: "Data Analytics for Research"
   subtitle: "Statistical Inference and Learning with R"
   output-file: "stat_inference_learning"

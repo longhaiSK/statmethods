@@ -1,7 +1,5 @@
 ---
 title: "Residual Diagnostics for Regression Modelling"
-author: ""
-date: ""
 format: html
 ---
 

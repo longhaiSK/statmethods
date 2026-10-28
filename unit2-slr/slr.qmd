@@ -1,7 +1,5 @@
 ---
 title: "Simple Linear Regression"
-author: ""
-date: ""
 format: 
   html
 editor: source
